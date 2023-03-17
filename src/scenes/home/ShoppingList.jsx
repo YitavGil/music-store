@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Tabs, Tab, Box, Typography, useMediaQuery } from '@mui/material';
 import { setItems } from "../../state";
 import Item from "../../components/items/Item";
+import RenderTabs from "../../components/tab-panel/RenderTabs";
+import TabPanel from "../../components/tab-panel/TabPanel";
 
 const ShoppingList = () => {
   const [value, setValue] = useState('all');
@@ -37,10 +39,22 @@ const ShoppingList = () => {
   const classicRock = items.filter(
     (item) => item.attributes.category === "classicRock"
   );
+
+  const tabTitles = [
+    ["All", 0]
+    ["New Releases" , 0],
+    ["Hard Rock", 0],
+    ["Classic Rock" ,0]
+  ]
   console.log(items);
 
   return (
-    <div>ShoppingList</div>
+    <Box width="80%" margin="80px auto">
+      {/* <RenderTabs tabTitles={tabTitles} tabValue={value} setTabValue={setValue} /> */}
+      <Typography>
+
+      </Typography>
+    </Box>
   )
 }
 
