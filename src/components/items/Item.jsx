@@ -16,12 +16,12 @@ const Item = ({ item, width }) => {
     palette: { neutral },
   } = useTheme();
 
-  const { category, price, name, image } = item.attributes;
+  const { category, price, name, image } = item?.attributes;
   const {
     data: {
       attributes: {
         formats: {
-          medium: { url },
+          thumbnail: { url },
         },
       },
     },
@@ -37,7 +37,7 @@ const Item = ({ item, width }) => {
         <img
           alt={item.name}
           width="300px"
-          height="400px"
+          height="300px"
           src={`http://localhost:1337${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
           style={{ cursor: "pointer" }}

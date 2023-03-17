@@ -19,6 +19,8 @@ const MainCarousel = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   return (
     <Carousel
+    interval={4000}
+    autoPlay
       infiniteLoop={true}
       showThumbs={false}
       showIndicators={false}

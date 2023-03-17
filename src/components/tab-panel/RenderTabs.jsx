@@ -1,6 +1,6 @@
 import { Tabs, Tab, Box, Chip, Typography, Stack } from '@mui/material';
 
-const RenderTabs = ({ tabTitles, setTabValue, tabValue = 0, loading }) => {
+const RenderTabs = ({ tabTitles, setTabValue, tabValue = 0, loading, isNonMobile }) => {
   function a11yProps(index) {
     return {
       id: `simple-tab-${index}`,
@@ -23,7 +23,18 @@ const RenderTabs = ({ tabTitles, setTabValue, tabValue = 0, loading }) => {
 
   return (
     <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop: '2rem' }}>
-      <Tabs variant="fullWidth" value={tabValue} onChange={handleTabsChange} aria-label="basic tabs example">
+      <Tabs textColor="primary"
+        indicatorColor="primary"
+        value={tabValue}
+        onChange={handleTabsChange}
+        centered
+        TabIndicatorProps={{ sx: { display: isNonMobile ? "block" : "none" } }}
+        sx={{
+          m: "25px",
+          "& .MuiTabs-flexContainer": {
+            flexWrap: "wrap",
+          },
+        }}>
         {tabTitles.map((title, index) => (
           <Tab disabled={loading} key={title[0]} label={<TabTitle title={title} />} {...a11yProps(index)} />
         ))}

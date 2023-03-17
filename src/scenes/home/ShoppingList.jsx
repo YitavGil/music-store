@@ -4,18 +4,13 @@ import { Tabs, Tab, Box, Typography, useMediaQuery } from '@mui/material';
 import { setItems } from "../../state";
 import Item from "../../components/items/Item";
 import RenderTabs from "../../components/tab-panel/RenderTabs";
-import TabPanel from "../../components/tab-panel/TabPanel";
 
 const ShoppingList = () => {
-  const [value, setValue] = useState('all');
+  const [value, setValue] = useState(0);
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   console.log("items:", items)
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  }
 
   async function getItems() {
     const items = await fetch(
@@ -41,7 +36,7 @@ const ShoppingList = () => {
   );
 
   const tabTitles = [
-    ["All", 0]
+    ["All", 0],
     ["New Releases" , 0],
     ["Hard Rock", 0],
     ["Classic Rock" ,0]
@@ -50,10 +45,35 @@ const ShoppingList = () => {
 
   return (
     <Box width="80%" margin="80px auto">
-      {/* <RenderTabs tabTitles={tabTitles} tabValue={value} setTabValue={setValue} /> */}
-      <Typography>
-
+      <Typography variant="h3" textAlign="center">
+        Featured <b>Products</b>
       </Typography>
+      <RenderTabs tabTitles={tabTitles} tabValue={value} setTabValue={setValue} isNonMobile={isNonMobile} />
+      <Box
+      margin="0 auto"
+      display="grid"
+      gridTemplateColumns="repeat(auto-fill, 300px)"
+      justifyContent="space-around"
+      rowGap="20px"
+      columnGap="1.33%"
+      >
+      {value === 0 &&
+          items.map((item) => (
+            <Item item={item} key={`${item.name}-${item.id}`} />
+          ))}
+        {value === 1 &&
+          newReleases.map((item) => (
+            <Item item={item} key={`${item.name}-${item.id}`} />
+          ))}
+        {value === 2 &&
+          hardRock.map((item) => (
+            <Item item={item} key={`${item.name}-${item.id}`} />
+          ))}
+        {value === 3 &&
+          classicRock.map((item) => (
+            <Item item={item} key={`${item.name}-${item.id}`} />
+          ))}
+      </Box>
     </Box>
   )
 }
