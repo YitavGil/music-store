@@ -1,4 +1,4 @@
-import { Box, Button, Divider, IconButton, Typography } from "@mui/material";
+import { Box, Button, Divider, IconButton, Typography, Drawer  } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
@@ -29,6 +29,9 @@ const CartMenu = () => {
     return total + item.count * item.attributes.price;
   }, 0);
 
+ const handleCloseCart = () => {
+  dispatch(setIsCartOpen({}))
+ }
   return (
     <Box
       display={isCartOpen ? "block" : "none"}
@@ -53,7 +56,7 @@ const CartMenu = () => {
           {/* HEADER */}
           <FlexBox mb="15px">
             <Typography variant="h3">SHOPPING BAG ({cart.length})</Typography>
-            <IconButton onClick={() => dispatch(setIsCartOpen({}))}>
+            <IconButton onClick={handleCloseCart}>
               <CloseIcon />
             </IconButton>
           </FlexBox>

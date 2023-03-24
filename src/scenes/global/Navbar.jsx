@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Badge, Box, IconButton, Stack } from "@mui/material";
+import { Badge, Box, IconButton, Stack, Drawer } from "@mui/material";
 import {
   PersonOutline,
   ShoppingBagOutlined,

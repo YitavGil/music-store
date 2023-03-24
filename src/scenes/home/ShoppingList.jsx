@@ -41,7 +41,6 @@ const ShoppingList = () => {
     ["Hard Rock", 0],
     ["Classic Rock" ,0]
   ]
-  console.log(items);
 
   return (
     <Box width="80%" margin="80px auto">
