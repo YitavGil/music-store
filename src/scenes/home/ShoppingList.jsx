@@ -54,6 +54,7 @@ const ShoppingList = () => {
       justifyContent="space-around"
       rowGap="20px"
       columnGap="1.33%"
+      marginTop="1rem"
       >
       {value === 0 &&
           items.map((item) => (
