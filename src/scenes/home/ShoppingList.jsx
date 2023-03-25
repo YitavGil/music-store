@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Tabs, Tab, Box, Typography, useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import { setItems } from "../../state";
 import Item from "../../components/items/Item";
 import RenderTabs from "../../components/tab-panel/RenderTabs";
@@ -9,7 +9,6 @@ const ShoppingList = () => {
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
-  console.log("items:", items)
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   async function getItems() {
