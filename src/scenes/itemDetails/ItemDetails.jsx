@@ -76,6 +76,7 @@ const ItemDetails = () => {
             </Typography>
           </Box>
 
+          {/* COUNT AND BUTTON */}
           <Box display="flex" alignItems="center" minHeight="50px">
             <Box
               display="flex"
@@ -92,7 +93,59 @@ const ItemDetails = () => {
                 <AddIcon />
               </IconButton>
             </Box>
+            <Button
+            sx={{ 
+              backgroundColor: "#222222",
+              color: 'white',
+              borderRadius: 0,
+              minWidth: '150px',
+              padding: "10px 40px"
+            }}
+            onClick={() => dispatch(addToCart({ item: {...item, count}}))}
+            >
+              ADD TO CART
+            </Button>
           </Box>
+
+          <Box>
+            <Box m="20px 0 5px 0" display="flex">
+              <FavoriteBorderOutlinedIcon />
+              <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
+            </Box>
+            <Typography>Categories: {item?.attributes?.category}</Typography>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* INFORMATION */}
+      <Box m="20px 0">
+        <Tabs value={tabValue} onChange={handleTabChange}>
+          <Tab label="DESCRIPTION" value="description" />
+          <Tab label="REVIEWS" value="reviews" />
+        </Tabs>
+      </Box>
+      <Box display="flex" flexWrap="wrap" gap="15px">
+        {tabValue === "description" && (
+          <div>{item?.attributes?.longDescription}</div>
+        )}
+        {tabValue === "reviews" && <div>reviews</div>}
+      </Box>
+
+      {/* RELATED ITEMS */}
+      <Box mt="50px" width="100%">
+        <Typography variant="h3" fontWeight="bold">
+          Related Products
+        </Typography>
+        <Box
+          mt="20px"
+          display="flex"
+          flexWrap="wrap"
+          columnGap="1.33%"
+          justifyContent="space-between"
+        >
+          {relatedItems.slice(0, 4).map((item, i) => (
+            <Item key={`${item.name}-${i}`} item={item} />
+          ))}
         </Box>
       </Box>
     </Box>
