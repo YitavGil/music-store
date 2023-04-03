@@ -9,8 +9,30 @@ import Shipping from "./Shipping";
 import { loadStripe } from "@stripe/stripe-js";
 
 const initialValues = {
-  billing
-}
+  billingAddress: {
+    firstName: "",
+    lastName: "",
+    country: "",
+    street1: "",
+    street2: "",
+    city: "",
+    zipCode: "",
+  },
+  shippingAddress: {
+    isSameAddress: true,
+    firstName: "",
+    lastName: "",
+    country: "",
+    street1: "",
+    street2: "",
+    city: "",
+    zipCode: "",
+  },
+  email: "",
+  phoneNumber: "",
+};
+
+const checkoutSchema = []
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
